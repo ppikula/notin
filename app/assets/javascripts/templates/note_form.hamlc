@@ -1,0 +1,18 @@
+#note_form
+  %form
+    %input#id{:type =>'hidden', :value => @id}}
+
+    %label{:for => 'title'} Title:
+    %input#title{:value => @title}
+
+    %label{:for => 'content'} Content:
+    %textarea#content = @content
+
+    %label{:for => 'tag_list'} Tags:
+    %input#tag_list{:value => @tag_list}
+
+    .buttons
+      %button.save
+        Save
+      %button.cancel
+        Cancel

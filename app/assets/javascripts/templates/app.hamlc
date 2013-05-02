@@ -1,0 +1,9 @@
+#main_menu
+  #search_form_container
+    -# Search form will be rendered here.
+  #main_menu_container
+    -# Main menu will be rendered here.
+  #loader{:style => "display: none;"}
+    %img{:src => "/assets/loader.gif"}
+#page_container
+  -# Page main content will be rendered here.

@@ -1,0 +1,15 @@
+development: &development
+  adapter: mysql2
+  encoding: utf8
+  pool: 5
+  username: notin
+  password: notin
+  database: notin_development
+  
+test:
+  <<: *development
+  database: notin_test
+
+production:
+  <<: *development
+  database: notin_production

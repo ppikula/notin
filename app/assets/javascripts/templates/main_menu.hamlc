@@ -1,0 +1,6 @@
+%nav
+  %ul
+    %li
+      %a#new_note{:href => "javascript:void(0);", :title => "Create new note"} +
+    -#%li
+    -#  %a#help{:href => "javascript:void(0);", :title => "Help"} ?

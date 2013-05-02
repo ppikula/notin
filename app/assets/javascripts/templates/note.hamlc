@@ -1,0 +1,26 @@
+%div{:class => 'body'}
+  %header
+    - if @isStandAlone
+      %a.control.close{:href => 'javascript:void(0);', :title => 'Close'}
+        %i{:class => 'icon-remove'}
+    - else
+      %a.control.open{:href => 'javascript:void(0);', :title => 'Expand'}
+        %i{:class => 'icon-fullscreen'}
+    %span.created_at = @created_at
+  .content
+    - if @title
+      %h2.title = @title
+    != @content
+  %footer
+    - if @tag_list
+      .tags
+        = @tag_list
+    %nav.control
+      %ul
+        %li
+          %a.delete{:href => 'javascript:void(0);', :title => 'Delete'}
+            %i{:class => 'icon-trash'}
+        %li
+          %a.edit{:href => 'javascript:void(0);', :title => 'Edit'}
+            %i{:class => 'icon-pencil'}
+    .clearer
