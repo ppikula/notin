@@ -39,16 +39,24 @@ describe 'searching notes', :notes_feature => true do
     it 'redirects to search' do
       current_path.should == "/s/#{@keyword}"
     end
-
-    it 'sets search input with given keyword' do
-      find("##{NotesFeatures::SEARCH_INPUT_ID}").value.should == @keyword
-    end
   end
 
   describe 'not providing keyword' do
     it 'redirects to list' do
       search ''
       current_path.should == '/'
+    end
+  end
+
+  describe 'navigating to search' do
+    before do
+      @keyword = 'zeus'
+      visit "/s/#{@keyword}"
+      wait_until_content_is_loading
+    end
+
+    it 'sets search input with given keyword' do
+      find("##{NotesFeatures::SEARCH_INPUT_ID}").value.should == @keyword
     end
   end
 

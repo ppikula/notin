@@ -24,5 +24,6 @@ Notin.Router = Backbone.Router.extend
     Notin.app.showEditNoteForm(id)
 
   listAllNotes: ->
-    Notin.app.router.navigate('')
+    Notin.app.router.navigate('/')
     Notin.app.showNotes({showAll: true})
+    Notin.app.searchFormView.setInputText('')

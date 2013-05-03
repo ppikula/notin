@@ -5,7 +5,6 @@ gem 'rails', '3.2.13'
 gem 'grape', '0.4.1'
 gem 'grape-entity', '0.3.0'
 
-gem 'sqlite3' #todo
 gem 'mysql2', '0.3.11'
 gem 'acts-as-taggable-on', '2.3.1'
 

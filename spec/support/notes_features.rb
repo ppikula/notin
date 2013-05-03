@@ -1,6 +1,8 @@
 module NotesFeatures
   # Global
   CREATE_NEW_NOTE_TITLE = 'Create new note'
+  HOME_TITLE = 'Show all notes'
+
   LOADER = '#loader'
   SEARCH_INPUT_ID = 'search'
 
