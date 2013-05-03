@@ -57,6 +57,16 @@ Notin.AppView = Backbone.View.extend
           @$pageContainer.html(noteView.render().$el)
         , this)
 
+  # @param [String] keywords
+  showFirstMatchingNote: (keywords) ->
+    notes = new Notin.Notes
+    notes.on('reset', _.bind(
+      (notes) ->
+        if notes.length
+          @showNote(notes.at(0).get('id'))
+    , this))
+    notes.fetch({data: {keywords: keywords}})
+
   showNewNoteForm: ->
     formView = new Notin.NoteFormView()
     @$pageContainer.html(formView.render().$el)

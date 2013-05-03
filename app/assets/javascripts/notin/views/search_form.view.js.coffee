@@ -1,6 +1,7 @@
 Notin.SearchFormView = Backbone.View.extend
   events:
-    'keyup #search': 'redirectToSearch'
+    'keyup #search': 'search'
+    'submit': 'preventSubmit'
     
   render: ->
     @$el.html JST['search_form']
@@ -13,20 +14,21 @@ Notin.SearchFormView = Backbone.View.extend
   setInputText: (text) ->
     @$input.val text
 
-  redirectToSearch: (e) ->
-    @blurOnEscape(e)
-
-    # Redirect to search if keyword given, list otherwise.
-    keywords = @$input.val()
-    if keywords
-      Notin.app.router.navigate('s/' + keywords, true)
-    else if e.which != 83 # Don't list when shortcut was usedw
-      Notin.app.router.listAllNotes()
-    
   focusInput: ->
     @$input.focus()
 
-  blurOnEscape: (e) ->
-    if e.which == 27
+  search: (e) ->
+    if e.which == 27 # Escape
       @$el.find('#search').blur()
-      return false
+    else if @$input.val()
+      if e.which == 13 # Enter
+        Notin.router.navigate('sf/' + @$input.val(), true)
+      else
+        Notin.router.navigate('s/' + @$input.val(), true)
+    else if e.which != 83 # Don't list when shortcut was used
+      Notin.router.listAllNotes()
+
+    false
+
+  preventSubmit: (e) ->
+    e.preventDefault()

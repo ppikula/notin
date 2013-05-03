@@ -14,7 +14,7 @@ Notin.NoteFormView = Backbone.View.extend
     this
 
   cancel: ->
-    Notin.app.router.navigate('', true)
+    Notin.router.navigate('', true)
     false
 
   save: (event) ->
@@ -29,7 +29,7 @@ Notin.NoteFormView = Backbone.View.extend
       tag_list: @$form.find('#tag_list').val()
     ,
       success: _.bind((model) ->
-        Notin.app.router.navigate('n/' + model.get('id'), true)
+        Notin.router.navigate('n/' + model.get('id'), true)
       , this)
 
     false

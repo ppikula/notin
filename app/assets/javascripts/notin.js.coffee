@@ -21,7 +21,9 @@
 window.Notin =  {} # Create namespace
 
 $(document).ready ->
-    Notin.app = new Notin.AppView()
+    Notin.router = new Notin.Router
+    Notin.app = new Notin.AppView
+
     $('#notin').html(Notin.app.render().$el)
 
     Backbone.history.start

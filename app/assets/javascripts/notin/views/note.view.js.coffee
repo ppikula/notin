@@ -60,7 +60,7 @@ Notin.NoteView = Backbone.View.extend(
     # Prevent action on text elements
     if $.inArray($(event.currentTarget).attr('class'), ["content", "tags", "created_at"]) == -1
       url = if @isStandAlone is true then '/' else '/n/' + this.attributes.id
-      Notin.app.router.navigate(url, true)
+      Notin.router.navigate(url, true)
     else
       false
 
@@ -68,11 +68,11 @@ Notin.NoteView = Backbone.View.extend(
     return unless confirm('Are you sure you want to delete this note?')
     @model.destroy(
       success: ->
-        Notin.app.router.listNotes() # navigate('') doesn't work, because router doesn't detect route change
+        Notin.router.listNotes() # navigate('') doesn't work, because router doesn't detect route change
     )
 
   edit: ->
-    Notin.app.router.navigate('/e/' + @attributes.id, true)
+    Notin.router.navigate('/e/' + @attributes.id, true)
 
 
 )

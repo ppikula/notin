@@ -60,6 +60,29 @@ describe 'searching notes', :notes_feature => true do
     end
   end
 
+  describe 'hitting enter after providing keyword' do
+    before do
+      @keyword = 'zeus'
+      @note = Note.search('zeus').first
+
+      page.execute_script "
+        var e = jQuery.Event('keyup');
+        e.which = 13; // Enter
+        $('##{NotesFeatures::SEARCH_INPUT_ID}').val('#{@keyword}');
+        $('##{NotesFeatures::SEARCH_INPUT_ID}').trigger(e);
+      "
+      wait_until_content_is_loading
+    end
+
+    it 'redirects' do
+      current_path.should == "/sf/#{@keyword}"
+    end
+
+    it 'displays first note' do
+      displayed_notes_ids.should == [@note.id]
+    end
+  end
+
   # @param [String] keywords
   def search(keywords)
     fill_in(NotesFeatures::SEARCH_INPUT_ID, :with => keywords)

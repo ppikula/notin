@@ -9,7 +9,7 @@ Notin.MainMenuView = Backbone.View.extend
     this
 
   redirectToHome: ->
-    Notin.app.router.listAllNotes()
+    Notin.router.listAllNotes()
 
   redirectToNewNote: ->
-    Notin.app.router.navigate('n', true)
+    Notin.router.navigate('n', true)
