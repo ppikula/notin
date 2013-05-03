@@ -3,7 +3,7 @@ class Note < ActiveRecord::Base
 
   acts_as_taggable
 
-  default_scope order("created_at DESC")
+  default_scope order("updated_at DESC")
 
   # Looks for notes that have *all* given keywords (in content or tags) separated by spaces.
   #

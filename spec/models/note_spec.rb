@@ -1,10 +1,10 @@
 require 'spec_helper'
 
 describe Note do
-  it 'orders notes by created_at DESC' do
-    note1 = Timecop.freeze(15.minutes.ago) { Note.create }
-    note2 = Timecop.freeze(45.minutes.ago) { Note.create }
-    note3 = Timecop.freeze(10.minutes.ago) { Note.create }
+  it 'orders notes by updated_at DESC' do
+    note1 = Note.new ; Timecop.freeze(15.minutes.ago) { note1.update_attribute(:title, nil) }
+    note2 = Note.new ; Timecop.freeze(45.minutes.ago) { note2.update_attribute(:title, nil) }
+    note3 = Note.new ; Timecop.freeze(10.minutes.ago) { note3.update_attribute(:title, nil) }
 
     Note.all.collect{|n| n.id}.should == [note3.id, note1.id, note2.id]
   end
