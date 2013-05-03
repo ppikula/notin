@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130502130723) do
+ActiveRecord::Schema.define(:version => 20130503154143) do
 
   create_table "notes", :force => true do |t|
     t.text     "content"
@@ -38,5 +38,16 @@ ActiveRecord::Schema.define(:version => 20130502130723) do
   end
 
   add_index "tags", ["name"], :name => "index_tags_on_name"
+
+  create_table "users", :force => true do |t|
+    t.string   "email",              :default => "", :null => false
+    t.string   "encrypted_password", :default => "", :null => false
+    t.datetime "created_at",                         :null => false
+    t.datetime "updated_at",                         :null => false
+    t.string   "provider"
+    t.string   "uid"
+  end
+
+  add_index "users", ["email"], :name => "index_users_on_email", :unique => true
 
 end

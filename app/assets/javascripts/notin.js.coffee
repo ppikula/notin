@@ -4,6 +4,7 @@
 #= require backbone-0.9.9.min
 #= require matchMedia
 #= require keymaster.min
+#= require jquery_ujs
 #= require jquery.masonry-2.1.06.min
 #= require jquery.dateFormat-1.0
 #= require jquery.autosize-1.16.7.min
@@ -18,7 +19,10 @@
 #= require_tree ./notin/views
 #= require_tree ./templates/
 
-window.Notin =  {} # Create namespace
+# Create namespace
+window.Notin =  {
+  currentUserId: null # Injected by server
+}
 
 $(document).ready ->
     Notin.router = new Notin.Router

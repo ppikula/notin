@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 
+gem 'thin', '1.5.1'
+
 gem 'rails', '3.2.13'
 
 gem 'grape', '0.4.1'
@@ -8,7 +10,9 @@ gem 'grape-entity', '0.3.0'
 gem 'mysql2', '0.3.11'
 gem 'acts-as-taggable-on', '2.3.1'
 
-gem 'thin', '1.5.1'
+gem 'devise', '2.2.3'
+gem 'omniauth', '1.1.4'
+gem 'omniauth-facebook', '1.4.1'
 
 gem 'haml_coffee_assets', '1.11.1'
 gem 'jquery-rails', '2.2.1'
