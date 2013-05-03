@@ -20,6 +20,6 @@ key.filter = (e) ->
   return true if $el.attr('id') == 'search'
 
   # Deny watching shortcuts on any other text inputs
-  return false if (tagName == 'input' || tagName == 'input' || tagName == 'input')
+  return false if (tagName == 'INPUT' || tagName == 'TEXTAREA')
 
   return true
