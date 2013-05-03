@@ -6,6 +6,7 @@
 #= require keymaster.min
 #= require jquery.masonry-2.1.06.min
 #= require jquery.dateFormat-1.0
+#= require jquery.autosize-1.16.7.min
 #= require showdown.min
 #= require_self
 #= require ./notin/lib/sync

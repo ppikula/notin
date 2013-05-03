@@ -20,7 +20,7 @@ Notin.SearchFormView = Backbone.View.extend
     keywords = @$input.val()
     if keywords
       Notin.app.router.navigate('s/' + keywords, true)
-    else if e.which != 83 # Don't list when shortcut was used
+    else if e.which != 83 # Don't list when shortcut was usedw
       Notin.app.router.listAllNotes()
     
   focusInput: ->

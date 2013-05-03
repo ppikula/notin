@@ -60,6 +60,7 @@ Notin.AppView = Backbone.View.extend
   showNewNoteForm: ->
     formView = new Notin.NoteFormView()
     @$pageContainer.html(formView.render().$el)
+    formView.trigger('render')
 
   # @param [Integer] noteId
   showEditNoteForm: (noteId) ->
@@ -68,6 +69,7 @@ Notin.AppView = Backbone.View.extend
         (note) ->
           formView = new Notin.NoteFormView({model: note})
           @$pageContainer.html(formView.render().$el)
+          formView.trigger('render')
       , this)
 
   # @param [Array] options

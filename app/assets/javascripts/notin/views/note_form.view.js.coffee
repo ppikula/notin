@@ -5,10 +5,12 @@ Notin.NoteFormView = Backbone.View.extend
 
   initialize: ->
     @model = new Notin.Note unless @model
+    @on('render', @autoSizeTextArea)
 
   render: ->
     @$el.html JST['note_form'](@model.toJSON())
     @$form = @$el.find 'form'
+
     this
 
   cancel: ->
@@ -31,5 +33,8 @@ Notin.NoteFormView = Backbone.View.extend
       , this)
 
     false
+
+  autoSizeTextArea: ->
+    @$el.find('#content').autosize()
 
 
