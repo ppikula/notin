@@ -3,13 +3,13 @@
     %input#id{:type =>'hidden', :value => @id}}
 
     %label{:for => 'title'} Title:
-    %input#title{:value => @title}
+    %input#title{:value => @title, :tabindex => 1}
 
     %label{:for => 'content'} Content:
-    %textarea#content = @content
+    %textarea#content{:tabindex => 2} = @content
 
     %label{:for => 'tag_list'} Tags:
-    %input#tag_list{:value => @tag_list}
+    %input#tag_list{:value => @tag_list, :tabindex => 3}
 
     .buttons
       %button.save

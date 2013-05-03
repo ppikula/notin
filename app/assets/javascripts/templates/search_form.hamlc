@@ -1,2 +1,2 @@
 %form
-  %input#search
+  %input#search{:value => ''}
