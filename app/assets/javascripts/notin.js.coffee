@@ -11,6 +11,7 @@
 #= require ./notin/lib/sync
 #= require ./notin/lib/notes_mason
 #= require ./notin/router
+#= require ./notin/shourtcuts
 #= require_tree ./notin/models
 #= require_tree ./notin/collections
 #= require_tree ./notin/views

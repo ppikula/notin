@@ -8,7 +8,7 @@ describe 'listing notes', :notes_feature => true do
   end
 end
 
-describe 'clicking home link' do
+describe 'clicking home link', :notes_feature => true do
   before do
     visit '/s/zeus'
     click_link NotesFeatures::HOME_TITLE
