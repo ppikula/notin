@@ -2,9 +2,8 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   skip_before_filter :authenticate_user!
 
   def facebook
-    @user = User.find_for_facebook_oauth(request.env['omniauth.auth'], current_user)
-
-    sign_in @user
+    puts request.env['omniauth.auth']
+    sign_in User.find_or_create_facebook_user(request.env['omniauth.auth'])
 
     redirect_to ''
   end

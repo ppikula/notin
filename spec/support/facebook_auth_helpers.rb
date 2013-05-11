@@ -12,6 +12,18 @@ module FacebookAuthHelpers
     @user
   end
 
+  # @param [User] user
+  def mock_omniauth(user)
+    OmniAuth.config.test_mode = true
+    OmniAuth.config.mock_auth[:facebook] = OmniAuth::AuthHash.new({
+        :provider => 'facebook',
+        :uid => user.uid,
+        :info => {
+            :email => user.email
+        }
+    })
+  end
+
   private
 
   # @param [Boolean] new_user
@@ -24,17 +36,5 @@ module FacebookAuthHelpers
     end
 
     user
-  end
-
-  # @param [User] user
-  def mock_omniauth(user)
-    OmniAuth.config.test_mode = true
-    OmniAuth.config.mock_auth[:facebook] = OmniAuth::AuthHash.new({
-        :provider => 'facebook',
-        :uid => user.uid,
-        :info => {
-            :email => user.email
-        }
-    })
   end
 end
