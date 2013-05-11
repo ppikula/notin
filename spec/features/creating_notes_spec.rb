@@ -1,15 +1,15 @@
 # Encoding: UTF-8
 require 'spec_helper'
 
-describe 'creating notes', :notes_feature => true do
+describe 'creating notes', :notes_feature => true, :login => true do
   before do
-    @notes = Seeder::create_notes
+    initialize_notes
     visit '/'
   end
 
   describe 'form' do
     before do
-      click_link NotesFeatures::CREATE_NEW_NOTE_TITLE
+      click_link NotesConstants::CREATE_NEW_NOTE_TITLE
     end
 
     include_examples 'a note form'
@@ -22,7 +22,7 @@ describe 'creating notes', :notes_feature => true do
       Timecop.freeze(@new_note_attrs[:created_at]) do
         visit '/'
 
-        click_link NotesFeatures::CREATE_NEW_NOTE_TITLE
+        click_link NotesConstants::CREATE_NEW_NOTE_TITLE
 
         fill_note_form(@new_note_attrs)
 
@@ -56,7 +56,7 @@ describe 'creating notes', :notes_feature => true do
   describe 'clicking new note link' do
     before do
       visit '/'
-      click_link NotesFeatures::CREATE_NEW_NOTE_TITLE
+      click_link NotesConstants::CREATE_NEW_NOTE_TITLE
     end
 
     it 'redirects' do

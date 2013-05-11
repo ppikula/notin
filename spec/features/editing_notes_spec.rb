@@ -1,9 +1,9 @@
 # Encoding: UTF-8
 require 'spec_helper'
 
-describe 'editing notes', :notes_feature => true do
+describe 'editing notes', :notes_feature => true, :login => true do
   before do
-    @notes = Seeder::create_notes
+    initialize_notes
     @note = @notes.first
     @new_note_attrs = {:content => "test\n\ntest", :title => 'Zeus', :tag_list => 'newton, einstein', :updated_at => Time.zone.now}
     visit '/'
@@ -12,7 +12,7 @@ describe 'editing notes', :notes_feature => true do
   describe 'form' do
     before do
       within note_element(@note.id) do
-        click_link NotesFeatures::EDIT_TITLE
+        click_link NotesConstants::EDIT_TITLE
       end
     end
 
@@ -22,7 +22,7 @@ describe 'editing notes', :notes_feature => true do
   describe 'filling form' do
     before do
       within note_element(@note.id) do
-        click_link NotesFeatures::EDIT_TITLE
+        click_link NotesConstants::EDIT_TITLE
       end
 
       Timecop.travel(@new_note_attrs[:updated_at]) do

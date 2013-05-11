@@ -1,7 +1,7 @@
 # Encoding: UTF-8
 require 'spec_helper'
 
-describe 'destroying notes', :notes_feature => true do
+describe 'destroying notes', :notes_feature => true, :login => true do
   context 'when user accepts' do
     before do
       page.driver.accept_js_confirms!
@@ -25,13 +25,13 @@ describe 'destroying notes', :notes_feature => true do
   end
 
   def delete_note
-    @notes = Seeder::create_notes
+    initialize_notes
     @note_to_delete = @notes.first
 
     visit '/'
 
     within note_element(@note_to_delete.id) do
-      click_link NotesFeatures::DELETE_TITLE
+      click_link NotesConstants::DELETE_TITLE
     end
 
     wait_until_content_is_loading

@@ -38,8 +38,13 @@ RSpec.configure do |config|
     DatabaseCleaner.clean
   end
 
-  # Include macros in according specs.
-  config.include NotesFeatures, :notes_feature => true
+  # Include macros in features.
+  config.include CapybaraHelpers, :notes_feature => true
+  config.include FacebookAuthHelpers, :notes_feature => true
+  config.include NotesFeaturesHelpers, :notes_feature => true
+
+  # Login user in most of feature specs.
+  config.include Login, :login => true
 
   # All features need JS to run, so set webkit as a default driver.
   Capybara.default_driver = :webkit

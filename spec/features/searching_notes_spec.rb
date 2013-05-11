@@ -12,9 +12,9 @@ def it_returns_only_matching_records(keywords, expected_ids)
 end
 
 # Note: Searching testing is more detailed in Note model spec.
-describe 'searching notes', :notes_feature => true do
+describe 'searching notes', :notes_feature => true, :login => true do
   before do
-    @notes = Seeder::create_notes
+    initialize_notes
     visit '/'
   end
 
@@ -56,7 +56,7 @@ describe 'searching notes', :notes_feature => true do
     end
 
     it 'sets search input with given keyword' do
-      find("##{NotesFeatures::SEARCH_INPUT_ID}").value.should == @keyword
+      find("##{NotesConstants::SEARCH_INPUT_ID}").value.should == @keyword
     end
   end
 
@@ -68,8 +68,8 @@ describe 'searching notes', :notes_feature => true do
       page.execute_script "
         var e = jQuery.Event('keyup');
         e.which = 13; // Enter
-        $('##{NotesFeatures::SEARCH_INPUT_ID}').val('#{@keyword}');
-        $('##{NotesFeatures::SEARCH_INPUT_ID}').trigger(e);
+        $('##{NotesConstants::SEARCH_INPUT_ID}').val('#{@keyword}');
+        $('##{NotesConstants::SEARCH_INPUT_ID}').trigger(e);
       "
       wait_until_content_is_loading
     end
@@ -85,7 +85,7 @@ describe 'searching notes', :notes_feature => true do
 
   # @param [String] keywords
   def search(keywords)
-    fill_in(NotesFeatures::SEARCH_INPUT_ID, :with => keywords)
+    fill_in(NotesConstants::SEARCH_INPUT_ID, :with => keywords)
     wait_until_content_is_loading
   end
 end

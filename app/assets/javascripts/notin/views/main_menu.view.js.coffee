@@ -4,7 +4,7 @@ Notin.MainMenuView = Backbone.View.extend
     'click #new_note': 'redirectToNewNote'
 
   render: ->
-    @$el.html JST['main_menu'] { loggedIn: Notin.currentUserId != null }
+    @$el.html JST['main_menu']
 
     this
 

@@ -20,15 +20,13 @@
 #= require_tree ./templates/
 
 # Create namespace
-window.Notin =  {
-  currentUserId: null # Injected by server
-}
+window.Notin =  {}
 
-$(document).ready ->
-    Notin.router = new Notin.Router
-    Notin.app = new Notin.AppView
+Notin.start = ->
+  Notin.router = new Notin.Router
+  Notin.app = new Notin.AppView
 
-    $('#notin').html(Notin.app.render().$el)
+  $('#notin').html(Notin.app.render().$el)
 
-    Backbone.history.start
-      pushState: true
+  Backbone.history.start
+    pushState: true

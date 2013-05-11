@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'displaying notes', :notes_feature => true do
+describe 'displaying notes', :notes_feature => true, :login => true do
   context 'default' do
     before do
       @note = FactoryGirl.create(:note, :content => 'Lorem ipsum')
@@ -34,19 +34,19 @@ describe 'displaying notes', :notes_feature => true do
     describe 'buttons' do
       it 'shows "expand" button' do
         within note_element(@note.id) do
-          page.should have_css "a[title='#{NotesFeatures::EXPAND_TITLE}']"
+          page.should have_css "a[title='#{NotesConstants::EXPAND_TITLE}']"
         end
       end
 
       it 'shows "edit" button' do
         within note_element(@note.id) do
-          page.should have_css "a[title='#{NotesFeatures::EDIT_TITLE}']"
+          page.should have_css "a[title='#{NotesConstants::EDIT_TITLE}']"
         end
       end
 
       it 'shows "delete" button' do
         within note_element(@note.id) do
-          page.should have_css "a[title='#{NotesFeatures::DELETE_TITLE}']"
+          page.should have_css "a[title='#{NotesConstants::DELETE_TITLE}']"
         end
       end
     end

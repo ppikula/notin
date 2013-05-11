@@ -1,7 +1,7 @@
 # Encoding: UTF-8
 require 'spec_helper'
 
-describe 'listing notes', :notes_feature => true do
+describe 'listing notes', :notes_feature => true, :login => true do
   before do
     Seeder::create_notes
     visit '/'
@@ -15,11 +15,6 @@ describe 'listing notes', :notes_feature => true do
   # Note: window sizing seems to differ on various systems, so numbers are approximated.
   # @fixme: Is it possible to remove this approximation?
   describe 'adjusting notes per row count according to window size' do
-    before do
-      Seeder::create_notes
-      visit '/'
-    end
-
     it 'shows 5 rows for page width ~ <= 1400px' do
       resize_window(1400 + 20)
       notes_per_row_count.should == 4

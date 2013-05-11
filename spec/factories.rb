@@ -1,6 +1,12 @@
 require 'faker'
 
 FactoryGirl.define do
+  factory :user do
+    email 'arthurdent@gmail.com'
+    provider 'facebook'
+    uid '42'
+  end
+
   factory :tag do
     sequence :name do |n|
       "##{n} Tag."
@@ -17,3 +23,4 @@ FactoryGirl.define do
     tag_list 'apollo, zeus'
   end
 end
+

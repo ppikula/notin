@@ -13,9 +13,9 @@ shared_examples_for 'note is not expanded' do
   end
 end
 
-describe 'expanding notes', :notes_feature => true do
+describe 'expanding notes', :notes_feature => true, :login => true do
   before do
-    @notes = Seeder::create_notes
+    initialize_notes
     @note = @notes.first
     visit '/'
   end
@@ -79,7 +79,7 @@ describe 'expanding notes', :notes_feature => true do
     context 'clicking "shrink" button again' do
       before do
         within note_element(@note.id) do
-          click_link NotesFeatures::CLOSE_TITLE
+          click_link NotesConstants::CLOSE_TITLE
         end
         wait_until_content_is_loading
       end
@@ -91,7 +91,7 @@ describe 'expanding notes', :notes_feature => true do
   # @param [Note] note
   def click_expand_button(note)
     within note_element(note.id) do
-      click_link NotesFeatures::EXPAND_TITLE
+      click_link NotesConstants::EXPAND_TITLE
     end
     wait_until_content_is_loading
   end
