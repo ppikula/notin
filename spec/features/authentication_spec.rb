@@ -8,7 +8,7 @@ describe 'authentication', :notes_feature => true do
     page_should_have_login_link
   end
 
-  describe 'clicking link as first time user' do
+  describe 'logging in as first time user' do
     it 'logins user and shows him his notes list' do
       initialize_notes
       visit '/'
@@ -19,7 +19,7 @@ describe 'authentication', :notes_feature => true do
   end
 
   # @todo
-  describe 'clicking link as returning user' do
+  describe 'logging in as returning user' do
     it 'logins user and shows him his notes list' do
       initialize_notes
       visit '/'
@@ -29,7 +29,17 @@ describe 'authentication', :notes_feature => true do
     end
   end
 
-  describe 'clicking logging out button' do
+  describe 'logging in after trying to show specific page' do
+    it 'logins user and redirects to desired page' do
+      initialize_notes
+      visit '/n'
+      login_user(new_user: true)
+
+      page.current_path.should == '/n'
+    end
+  end
+
+  describe 'logging out' do
     it 'logs out user' do
       visit '/'
       login_user

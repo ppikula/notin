@@ -30,3 +30,8 @@ Notin.start = ->
 
   Backbone.history.start
     pushState: true
+
+# Clean FB's buggy return URL.
+$(document).ready ->
+  if window.location.hash == '#_=_'
+    window.location.hash = ''

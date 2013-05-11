@@ -1,7 +1,6 @@
 Notin.Router = Backbone.Router.extend
   routes:
     '': 'listNotes'
-    '_=_': 'listNotes' # Redirect FB shit
     's/:keywords(/:first)': 'searchNotes'
     'sf/:keywords': 'showFirstMatchingNote'
     'n': 'newNote'
