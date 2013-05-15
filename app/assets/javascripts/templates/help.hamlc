@@ -1,0 +1,32 @@
+#help
+  %p
+    %strong
+      Help
+  %ol
+    %li
+      Note's content allows for
+      %a{:href => 'http://daringfireball.net/projects/markdown/syntax', :target => '_blank'}
+        markdown
+      usage.
+    %li Shortcuts:
+      %table
+        %tr
+          %td.shortcut
+            H
+          %td
+            Go to homepage (show all notes)
+        %tr
+          %td.shortcut
+            N
+          %td
+            Create new note (show new note form))
+        %tr
+          %td.shortcut
+            S
+          %td
+            Focus search input
+        %tr
+          %td.shortcut
+            ESC
+          %td
+            Close focused window (note form, expanded note)

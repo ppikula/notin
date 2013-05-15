@@ -1,5 +1,4 @@
 key 'esc', 'closable', ->
-  console.log 3
   Notin.router.navigate('/', true)
 
 key 'h', ->

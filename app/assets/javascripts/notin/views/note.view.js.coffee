@@ -1,5 +1,5 @@
 # Single note row on notes list.
-Notin.NoteView = Backbone.View.extend(
+Notin.NoteView = Backbone.View.extend
   className: 'note'
   events:
     mouseenter: 'showMenu'
@@ -73,6 +73,3 @@ Notin.NoteView = Backbone.View.extend(
 
   edit: ->
     Notin.router.navigate('/e/' + @attributes.id, true)
-
-
-)

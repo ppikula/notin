@@ -1,10 +1,12 @@
 module NotesConstants
-  # Global
+  # Menu
   CREATE_NEW_NOTE_TITLE = 'Create new note'
   HOME_TITLE = 'Show all notes'
   LOGIN_TITLE = 'Login with Facebook'
+  HELP_TITLE = 'Help'
   LOGOUT_TITLE = 'Logout'
 
+  # Globals
   LOADER = '#loader'
   SEARCH_INPUT_ID = 'search'
 

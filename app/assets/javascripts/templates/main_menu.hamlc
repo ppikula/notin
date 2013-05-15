@@ -6,9 +6,9 @@
     %li
       %a#new_note{:href => 'javascript:void(0);', :title => 'Create new note'}
         +
-    -#%li
-    -#  %a#help{:href => 'javascript:void(0);', :title => 'Help'}
-    -#    ?
+    %li
+      %a#help{:href => 'javascript:void(0);', :title => 'Help'}
+        ?
     %li
       %a#logout{:href => '/users/sign_out', :title => 'Logout', 'data-method' => 'delete', :rel => 'no-follow'}
         x
