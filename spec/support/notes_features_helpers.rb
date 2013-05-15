@@ -31,6 +31,6 @@ module NotesFeaturesHelpers
   end
 
   def initialize_notes
-    @notes = Seeder::create_notes
+    @notes = NotesSeeder::create(current_user)
   end
 end

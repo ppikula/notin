@@ -19,7 +19,7 @@ describe Users::OmniauthCallbacksController do
     end
 
     it 'redirects to homepage' do
-      response.should redirect_to ''
+      response.should redirect_to '/'
     end
   end
 end

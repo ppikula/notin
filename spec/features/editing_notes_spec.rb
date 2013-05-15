@@ -35,7 +35,7 @@ describe 'editing notes', :notes_feature => true, :login => true do
       @note.reload
       @note.content.should == @new_note_attrs[:content]
       @note.title.should == @new_note_attrs[:title]
-      @note.tag_list.to_s.should == @new_note_attrs[:tag_list]
+      @note.user_tags(current_user).to_s.should == @new_note_attrs[:tag_list]
       @note.updated_at.to_s.should == @new_note_attrs[:updated_at].to_s
     end
 

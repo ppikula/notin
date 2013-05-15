@@ -1,30 +1,32 @@
 require 'spec_helper'
 
 describe Notin::Endpoints::Notes do
+
+  before do
+    require 'patches/api_helpers'
+    @user = STUBBED_USER
+  end
+
   describe 'GET /notes' do
     before do
-      @notes = [
-          FactoryGirl.create(:note),
-          FactoryGirl.create(:note),
-          FactoryGirl.create(:note)
-      ]
+      @notes = NotesSeeder::create(@user, skip_save: true)
     end
 
     it 'it renders all notes when no keyword is given' do
-      Note.expects(:all).returns(@notes)
+      User.any_instance.expects(:notes).returns(@notes)
       get '/notes'
       it_presents(@notes)
     end
 
     it 'it renders all notes when empty keywords string is given' do
-      Note.expects(:all).returns(@notes)
+      User.any_instance.expects(:notes).returns(@notes)
       get '/notes', {:keywords => ' '}
       it_presents(@notes)
     end
 
     it 'it renders specific @notes when keywords string is given' do
       specific_notes = @notes[0..1]
-      Note.stubs(:search).with('zeus').returns specific_notes
+      Note.expects(:search).with(@user.id, 'zeus').returns specific_notes
       get '/notes', {:keywords => 'zeus'}
 
       it_presents(specific_notes)
@@ -33,23 +35,24 @@ describe Notin::Endpoints::Notes do
 
   describe 'GET /notes/:id' do
     before do
-      @note = FactoryGirl.create(:note, :content => 'Note', :tag_list => 'apollo, athena')
-
-      Note.expects(:find).with(@note.id.to_s).returns @note
+      @note = FactoryGirl.build(:note, :id => 1, :content => 'Note', :tag_list => 'zeus, apollo')
+      Note.expects(:for_user).with(@user, @note.id.to_s).returns @note
+      Note.any_instance.expects(:user_tags).with(@user).returns(@note.tag_list.to_s)
 
       get "/notes/#{@note.id}"
     end
 
-    it 'renders updated note' do
+    it 'renders note' do
       it_presents(@note)
     end
   end
 
   describe 'POST /notes' do
     before do
-      note_attribs = {:content => 'Note', :title => 'Title', :tag_list => 'apollo, athena'}
-      @note = FactoryGirl.create(:note, note_attribs)
-      Note.expects(:create).with(note_attribs).returns @note
+      note_attribs = {:content => 'Note', :title => 'Title', :tag_list => 'zeus, apollo', :user_id => @user.id}
+      @note = FactoryGirl.build(:note, note_attribs)
+      Note.expects(:create).with(note_attribs.reject{|k| k == :tag_list}).returns @note
+      Note.any_instance.expects(:user_tags).with(@user).returns(note_attribs[:tag_list])
 
       post '/notes', note_attribs
     end
@@ -61,26 +64,34 @@ describe Notin::Endpoints::Notes do
 
   describe 'PUT /notes/:id' do
     before do
-      new_note_attribs = {:content => 'Modified note', :title => 'New title', :tag_list => 'zeus, athena'}
-      @note = FactoryGirl.create(:note, :content => 'Note', :title => 'Title', :tag_list => 'apollo, athena')
+      new_tags = 'zeus, apollo'
+      new_note_attribs = {:content => 'Modified note', :title => 'New title'}
+      @note = FactoryGirl.build(:note, :id => 1, :content => 'Note', :title => 'Title', :tag_list => nil)
+      @updated_note = FactoryGirl.build(:note,
+          :id => 1, :content => new_note_attribs[:content], :title => new_note_attribs[:title], :tag_list => new_tags
+      )
 
-      Note.expects(:find).with(@note.id.to_s).returns @note
-      @note.update_attributes(new_note_attribs)
-      @note.expects(:update_attributes).with(new_note_attribs).returns @note
+      Note.expects(:for_user).with(@user, @note.id.to_s).returns @note
+      Note.any_instance.stubs(:update_attributes).with(new_note_attribs)
+      Note.any_instance.expects(:reload).returns @updated_note
+      Note.any_instance.expects(:tag_by_user).with(@user, new_tags)
+      Note.any_instance.expects(:user_tags).with(@user).returns(new_tags)
 
-      put "/notes/#{@note.id}", new_note_attribs
+      put "/notes/#{@note.id}", new_note_attribs.merge({:tag_list => new_tags})
     end
 
     it 'renders updated note' do
-      it_presents(@note)
+      it_presents(@updated_note)
     end
   end
 
   describe 'DELETE destroy' do
     before do
-      @note = FactoryGirl.create(:note)
+      @note = FactoryGirl.build(:note, :id => 1)
 
-      Note.expects(:destroy).with(@note.id.to_s).returns @note
+      Note.expects(:for_user).with(@user, @note.id.to_s).returns @note
+      Note.any_instance.expects(:destroy).returns @note
+      Note.any_instance.expects(:user_tags).with(@user).returns(@note.tag_list.to_s)
 
       delete "/notes/#{@note.id}"
     end

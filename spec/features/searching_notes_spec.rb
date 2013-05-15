@@ -63,7 +63,7 @@ describe 'searching notes', :notes_feature => true, :login => true do
   describe 'hitting enter after providing keyword' do
     before do
       @keyword = 'zeus'
-      @note = Note.search('zeus').first
+      @note = Note.search(current_user, 'zeus').first
 
       page.execute_script "
         var e = jQuery.Event('keyup');

@@ -2,7 +2,9 @@ require 'faker'
 
 FactoryGirl.define do
   factory :user do
-    email 'arthurdent@gmail.com'
+    sequence :email do |n|
+      "arthurdent#{n}@gmail.com"
+    end
     provider 'facebook'
     uid '42'
   end

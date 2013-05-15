@@ -11,14 +11,17 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130503154143) do
+ActiveRecord::Schema.define(:version => 20130511152325) do
 
   create_table "notes", :force => true do |t|
     t.text     "content"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
     t.string   "title"
+    t.integer  "user_id"
   end
+
+  add_index "notes", ["user_id"], :name => "index_notes_on_user_id"
 
   create_table "taggings", :force => true do |t|
     t.integer  "tag_id"

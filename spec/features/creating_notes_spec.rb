@@ -39,7 +39,7 @@ describe 'creating notes', :notes_feature => true, :login => true do
       note = Note.find(new_note_id)
       note.content.should == @new_note_attrs[:content]
       note.title.should == @new_note_attrs[:title]
-      note.tag_list.to_s.should == @new_note_attrs[:tag_list]
+      note.user_tags(current_user).to_s.should == @new_note_attrs[:tag_list]
       note.created_at.to_s.should == @new_note_attrs[:created_at].to_s
     end
 

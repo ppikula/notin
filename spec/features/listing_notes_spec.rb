@@ -3,7 +3,7 @@ require 'spec_helper'
 
 describe 'listing notes', :notes_feature => true, :login => true do
   before do
-    Seeder::create_notes
+    initialize_notes
     visit '/'
     wait_until_content_is_loading
   end

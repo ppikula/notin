@@ -1,18 +1,28 @@
 class Note < ActiveRecord::Base
-  attr_accessible :content, :tag_list, :title
+  attr_accessible :content, :tag_list, :title, :user_id
 
-  acts_as_taggable
+  belongs_to :user
+
+  acts_as_taggable_on :tags
 
   default_scope order("updated_at DESC")
 
-  # Looks for notes that have *all* given keywords (in content or tags) separated by spaces.
+  # @param [User] user
+  # @param [Integer] id Note Id
+  # @return [Note]
+  def self.for_user(user, id)
+    where("user_id = ? AND id = ?", user.id, id).first
+  end
+
+  # Looks for user's notes that have *all* given keywords (in content or tags) separated by spaces.
   #
   # = Example
-  #   TaggedNote.search("ruby rails")
+  #   TaggedNote.search(current_user.id, "ruby rails")
   #
-  # @param keywords_string [String]
+  # @param [Integer] user_id
+  # @param [String] keywords_string
   # @return [ActiveRecord]
-  def self.search(keywords_string)
+  def self.search(user_id, keywords_string)
     keywords = keywords_string.split(/\s/)
 
     query = Note
@@ -35,6 +45,20 @@ class Note < ActiveRecord::Base
       query = query.where(query_string, keyword_string, keyword_string, keyword_string)
     end
 
+    query = query.where(:user_id => user_id)
     query
+  end
+
+  # @param [User] user
+  # @return [String] tags
+  def user_tags(user)
+    tags_from(user).to_s
+  end
+
+  # @param [User] user
+  # @param [String] tag_list
+  # @param [Boolean] skip_save
+  def tag_by_user(user, tag_list, skip_save: false)
+    user.tag(self, :with => tag_list, :on => :tags, skip_save: skip_save)
   end
 end

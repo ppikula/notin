@@ -4,7 +4,7 @@ require 'rspec/rails'
 require 'rspec/autorun'
 require 'capybara/rspec'
 require 'mocha/setup'
-require Rails.root.join 'lib/seeder'
+require Rails.root.join 'lib/notes_seeder'
 
 # Requires supporting ruby files with custom matchers and macros, etc,
 # in spec/support/ and its subdirectories.

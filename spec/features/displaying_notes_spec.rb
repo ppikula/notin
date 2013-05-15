@@ -3,7 +3,8 @@ require 'spec_helper'
 describe 'displaying notes', :notes_feature => true, :login => true do
   context 'default' do
     before do
-      @note = FactoryGirl.create(:note, :content => 'Lorem ipsum')
+      @note = FactoryGirl.create(:note, :content => 'Lorem ipsum', :user_id => current_user.id)
+      @note.tag_by_user(current_user, 'apollo, zeus')
       visit '/'
     end
 
@@ -53,9 +54,10 @@ describe 'displaying notes', :notes_feature => true, :login => true do
   end
 
   context 'when content is too long' do
-    before :all do
+    before do
       @limit = 400
-      @note = FactoryGirl.create(:note, :content => 'foo' * (@limit * 2))
+      @note = FactoryGirl.create(:note, :content => 'foo' * (@limit * 2), :user_id => current_user.id)
+      @note.tag_by_user(current_user, 'apollo, zeus')
       visit '/'
     end
 
@@ -68,7 +70,7 @@ describe 'displaying notes', :notes_feature => true, :login => true do
 
   describe 'note controls' do
     before do
-      @note = FactoryGirl.create(:note)
+      @note = FactoryGirl.create(:note, :user_id => current_user.id)
       visit '/'
     end
 
