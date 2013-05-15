@@ -1,3 +1,5 @@
+require 'notes_seeder'
+
 class User < ActiveRecord::Base
   attr_accessible :email, :provider, :uid
 
