@@ -12,6 +12,11 @@
       %table
         %tr
           %td.shortcut
+            SHIFT + /
+          %td
+            Show this page
+        %tr
+          %td.shortcut
             H
           %td
             Go to homepage (show all notes)
@@ -30,3 +35,20 @@
             ESC
           %td
             Close focused window (note form, expanded note)
+    %li Note shortcuts (available when cursor is over a note):
+      %table
+        %tr
+          %td.shortcut
+            E
+          %td
+            Edit note
+        %tr
+          %td.shortcut
+            D
+          %td
+            Delete note
+        %tr
+          %td.shortcut
+            F
+          %td
+            Open note

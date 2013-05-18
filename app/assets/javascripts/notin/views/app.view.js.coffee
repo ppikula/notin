@@ -82,6 +82,11 @@ Notin.AppView = Backbone.View.extend
           formView.trigger('render')
       , this)
 
+  # @param [String] template
+  showModal: (template) ->
+    modalView = new Notin.ModalView()
+    modalView.render(template)
+
   # @param [Array] options
   # @return [String]
   resolveKeywords: (options) ->

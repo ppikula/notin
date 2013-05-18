@@ -3,6 +3,7 @@ Notin.NoteView = Backbone.View.extend
   className: 'note'
   events:
     mouseenter: 'showMenu'
+    mouseover: 'showMenu'
     mouseleave: 'hideMenu'
     'click .delete': 'delete'
     'click .edit': 'edit'
@@ -50,10 +51,12 @@ Notin.NoteView = Backbone.View.extend
     converter = new Showdown.converter();
     converter.makeHtml(content);
 
-  showMenu: ->
+  showMenu: (e) ->
+    key.setTmpScope('note', $(e.currentTarget))
     @$controls.fadeIn 'slow'
 
   hideMenu: ->
+    key.removeTmpScope()
     @$controls.hide() unless @isStandAlone
 
   toggle: (event) ->
@@ -65,11 +68,7 @@ Notin.NoteView = Backbone.View.extend
       false
 
   delete: ->
-    return unless confirm('Are you sure you want to delete this note?')
-    @model.destroy(
-      success: ->
-        Notin.router.listNotes() # navigate('') doesn't work, because router doesn't detect route change
-    )
+    Notin.router.navigate('/d/' + @attributes.id, true)
 
   edit: ->
     Notin.router.navigate('/e/' + @attributes.id, true)
