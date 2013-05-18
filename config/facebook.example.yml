@@ -1,2 +1,8 @@
-app_id: APP_ID
-app_secret: APP_SECRET
+development: &development
+  app_id: APP_ID
+  app_secret: APP_SECRET
+test:
+  <<: *development
+production:
+  app_id: APP_ID
+  app_secret: APP_SECRET
