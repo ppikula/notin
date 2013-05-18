@@ -43,8 +43,8 @@ describe 'creating notes', :notes_feature => true, :login => true do
       note.created_at.to_s.should == @new_note_attrs[:created_at].to_s
     end
 
-    it 'redirects to note page' do
-      page.current_path.should == "/n/#{new_note_id}"
+    it 'redirects to note list' do
+      page.current_path.should == '/'
     end
 
     # @return [Integer]

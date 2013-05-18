@@ -28,8 +28,8 @@ Notin.NoteFormView = Backbone.View.extend
       content: @$form.find('#content').val()
       tag_list: @$form.find('#tag_list').val()
     ,
-      success: _.bind((model) ->
-        Notin.router.navigate('n/' + model.get('id'), true)
+      success: _.bind(->
+        Notin.router.navigate('', true)
       , this)
 
     false
