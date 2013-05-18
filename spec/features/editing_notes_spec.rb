@@ -5,7 +5,7 @@ describe 'editing notes', :notes_feature => true, :login => true do
   before do
     initialize_notes
     @note = @notes.first
-    @new_note_attrs = {:content => "test\n\ntest", :title => 'Zeus', :tag_list => 'newton, einstein', :updated_at => Time.zone.now}
+    @new_note_attrs = {:content => 'Lorem ipsum', :title => 'Zeus', :tag_list => 'newton, einstein', :updated_at => Time.zone.now}
     visit '/'
   end
 
@@ -25,10 +25,13 @@ describe 'editing notes', :notes_feature => true, :login => true do
         click_link NotesConstants::EDIT_TITLE
       end
 
+      wait_until_content_is_loading
+
       Timecop.travel(@new_note_attrs[:updated_at]) do
         fill_note_form(@new_note_attrs)
-        wait_until_content_is_loading
       end
+
+      wait_until_content_is_loading
     end
 
     it 'updates note with given attributes' do

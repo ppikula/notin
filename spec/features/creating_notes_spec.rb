@@ -17,7 +17,7 @@ describe 'creating notes', :notes_feature => true, :login => true do
 
   describe 'filling form' do
     before do
-      @new_note_attrs = {:content => "test\n\ntest", :title => 'Zeus', :tag_list => 'newton, einstein', :created_at => Time.zone.now}
+      @new_note_attrs = {:content => 'Lorem ipsum', :title => 'Zeus', :tag_list => 'newton, einstein', :created_at => Time.zone.now}
 
       Timecop.freeze(@new_note_attrs[:created_at]) do
         visit '/'

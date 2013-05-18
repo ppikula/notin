@@ -19,6 +19,10 @@ shared_examples_for 'a note form' do
     page.should have_button NotesConstants::CANCEL_BUTTON
   end
 
+  it 'has codemirror overlay' do
+    page.should have_css '.CodeMirror'
+  end
+
   it 'closes form and shows notes list when hitting cancel' do
     click_button NotesConstants::CANCEL_BUTTON
     wait_until_content_is_loading

@@ -5,7 +5,7 @@ Notin.NoteFormView = Backbone.View.extend
 
   initialize: ->
     @model = new Notin.Note unless @model
-    @on('render', @autoSizeTextArea)
+    @on('render', @initCodeMirror)
 
   render: ->
     @$el.html JST['note_form'](@model.toJSON())
@@ -34,7 +34,11 @@ Notin.NoteFormView = Backbone.View.extend
 
     false
 
-  autoSizeTextArea: ->
-    @$el.find('#content').autosize()
+  initCodeMirror: ->
+    Notin.editor = CodeMirror.fromTextArea(@$el.find('#content').get(0), {
+      height: '100px'
+      theme: 'ambiance'
+    })
+
 
 

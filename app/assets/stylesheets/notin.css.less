@@ -2,6 +2,8 @@
  *= require normalize
  *= require glyphicons
  *= require jquery.simplemodal
+ *= require codemirror
+ *= require codemirror.ambiance
  *= require_self
  *= require_tree .
  *= require print
@@ -150,10 +152,16 @@ button:active {
       padding: 6px 5px;
       width: 687px;
     }
+    .CodeMirror {
+      margin-bottom: 6px;
+    }
     label {
       font-weight: bold;
       display: block;
       margin-bottom: 5px;
+      small {
+        font-weight: normal;
+      }
     }
     .buttons {
       padding-top: 3px;

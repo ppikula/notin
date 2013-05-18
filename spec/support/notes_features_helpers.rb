@@ -17,7 +17,7 @@ module NotesFeaturesHelpers
 
   # @param [Hash] attrs
   def fill_note_form(attrs)
-    fill_in NotesConstants::CONTENT_LABEL, :with => attrs[:content]
+    page.execute_script("Notin.editor.setValue('#{attrs[:content]}');")
     fill_in NotesConstants::TAGS_LABEL, :with => attrs[:tag_list]
     fill_in NotesConstants::TITLE_LABEL, :with => attrs[:title]
 

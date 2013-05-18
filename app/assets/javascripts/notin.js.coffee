@@ -10,6 +10,7 @@
 #= require jquery.autosize-1.16.7.min
 #= require jquery.simplemodal-1.4.4.min
 #= require showdown.min
+#= require codemirror-markdown-3.12.min
 #= require_self
 #= require ./notin/lib/sync
 #= require ./notin/lib/notes_mason
