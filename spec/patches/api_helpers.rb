@@ -1,4 +1,3 @@
-# @fixme: Can it be mocked with mocha?
 STUBBED_USER = FactoryGirl.create(:user)
 module Notin::APIHelpers
   def current_user

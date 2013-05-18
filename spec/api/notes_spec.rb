@@ -1,10 +1,16 @@
 require 'spec_helper'
 
 describe Notin::Endpoints::Notes do
-
-  before do
-    require 'patches/api_helpers'
+  # Stub Api helper current_user method.
+  # @fixme: Can it be mocked with mocha?
+  before :all do
+    load 'patches/api_helpers.rb'
     @user = STUBBED_USER
+  end
+
+  # After tests, load regular helper method.
+  after :all do
+    load Rails.root.join('app/api/notin/api_helpers.rb')
   end
 
   describe 'GET /notes' do
