@@ -38,6 +38,8 @@ namespace :deploy do
     static_configs.each do |config_file|
       run "ln -nfs #{deploy_to}/shared/config/#{config_file}.yml #{release_path}/config/#{config_file}.yml"
     end
+    
+    run "ln -nfs #{deploy_to}/shared/config/secret_token.rb #{release_path}/config/initializers/secret_token.rb"
   end
 end
 
