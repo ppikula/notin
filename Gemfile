@@ -13,6 +13,7 @@ gem 'grape-entity', '0.3.0'
 gem 'devise', '2.2.3'
 gem 'omniauth', '1.1.4'
 gem 'omniauth-facebook', '1.4.1'
+gem 'omniauth-google-oauth2', '0.1.17'
 
 gem 'haml_coffee_assets', '1.11.1'
 gem 'jquery-rails', '2.2.1'
@@ -40,7 +41,8 @@ group :test do
   gem 'rspec-rails', '2.13.0'
   gem 'factory_girl_rails', '4.2.1'
   gem 'capybara', '2.0.3'
-  gem 'capybara-webkit', '0.14.2'
+  #gem 'capybara-webkit', '0.14.2'
+  gem 'capybara-webkit', :git => "git://github.com/thoughtbot/capybara-webkit.git", :ref=> "9223d9f"
   gem 'database_cleaner', '0.9.1'
   gem 'mocha', '0.13.1'
   gem 'timecop', '0.6.1'

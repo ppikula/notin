@@ -1,4 +1,5 @@
 require 'omniauth-facebook'
+require 'omniauth-google-oauth2'
 
 # Use this hook to configure devise mailer, warden hooks and so forth.
 # Many of these configuration options can be set straight in your model.
@@ -37,12 +38,12 @@ Devise.setup do |config|
   # Configure which authentication keys should be case-insensitive.
   # These keys will be downcased upon creating or modifying a user and when used
   # to authenticate or find a user. Default is :email.
-  # config.case_insensitive_keys = [ :email ]
+  config.case_insensitive_keys = [ :email ]
 
   # Configure which authentication keys should have whitespace stripped.
   # These keys will have whitespace before and after removed upon creating or
   # modifying a user and when used to authenticate or find a user. Default is :email.
-  # config.strip_whitespace_keys = [ :email ]
+  config.strip_whitespace_keys = [ :email ]
 
   # Tell if authentication through request.params is enabled. True by default.
   # It can be set to an array that will enable params authentication only for the
@@ -217,6 +218,9 @@ Devise.setup do |config|
   # up on your models and hooks.
   fb_config = YAML.load_file("#{Rails.root}/config/facebook.yml")[Rails.env]
   config.omniauth :facebook, fb_config['app_id'], fb_config['app_secret'], :scope => 'email'
+
+  google_config = YAML.load_file("#{Rails.root}/config/google.yml")[Rails.env]
+  config.omniauth :google_oauth2,google_config['app_id'],google_config['app_secret'] ,{ access_type: "offline", approval_prompt: "" }
 
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or
