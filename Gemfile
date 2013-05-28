@@ -41,8 +41,7 @@ group :test do
   gem 'rspec-rails', '2.13.0'
   gem 'factory_girl_rails', '4.2.1'
   gem 'capybara', '2.0.3'
-  #gem 'capybara-webkit', '0.14.2'
-  gem 'capybara-webkit', :git => "git://github.com/thoughtbot/capybara-webkit.git", :ref=> "9223d9f"
+  gem 'capybara-webkit', '0.14.2'
   gem 'database_cleaner', '0.9.1'
   gem 'mocha', '0.13.1'
   gem 'timecop', '0.6.1'
