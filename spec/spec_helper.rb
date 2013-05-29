@@ -40,7 +40,7 @@ RSpec.configure do |config|
 
   # Include macros in features.
   config.include CapybaraHelpers, :notes_feature => true
-  config.include FacebookAuthHelpers, :notes_feature => true
+  config.include AuthHelpers, :notes_feature => true
   config.include NotesFeaturesHelpers, :notes_feature => true
 
   # Login user in most of feature specs.

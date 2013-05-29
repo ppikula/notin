@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe Users::OmniauthCallbacksController do
-  include FacebookAuthHelpers
+  include AuthHelpers
   include Devise::TestHelpers
 
   describe 'facebook' do
@@ -9,7 +9,7 @@ describe Users::OmniauthCallbacksController do
       @user = FactoryGirl.create(:user)
 
       request.env['devise.mapping'] = Devise.mappings[:user]
-      request.env['omniauth.auth'] = mock_omniauth(@user)
+      request.env['omniauth.auth'] = mock_omniauth(@user,:facebook)
       
       get :facebook
     end
@@ -25,10 +25,10 @@ describe Users::OmniauthCallbacksController do
 
   describe 'google' do 
     before do 
-      @user = FactoryGirl.create(:user)
+      @user = FactoryGirl.create(:user, provider: 'google_oauth2')
 
       request.env['devise.mapping'] = Devise.mappings[:user]
-      request.env['omniauth.auth'] = mock_omniauth(@user)
+      request.env['omniauth.auth'] = mock_omniauth(@user,:google_oauth2)
       
       get :google_oauth2
 

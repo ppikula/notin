@@ -2,7 +2,8 @@ module NotesConstants
   # Menu
   CREATE_NEW_NOTE_TITLE = 'Create new note'
   HOME_TITLE = 'Show all notes'
-  LOGIN_TITLE = 'Login with Facebook'
+  FACEBOOK_LOGIN_TITLE = 'Login with Facebook'
+  GOOGLE_LOGIN_TITLE = 'Login with Google'
   HELP_TITLE = 'Help'
   LOGOUT_TITLE = 'Logout'
 
