@@ -30,7 +30,7 @@ role :db,  domain, :primary => true
 
 namespace :deploy do
   task :restart, :roles => :app do
-    sudo 'service thin restart'
+    sudo 'service thin restart notin'
   end
 
   desc 'Symlink config files'
@@ -38,7 +38,8 @@ namespace :deploy do
     static_configs.each do |config_file|
       run "ln -nfs #{deploy_to}/shared/config/#{config_file}.yml #{release_path}/config/#{config_file}.yml"
     end
-    
+
+    run "rm -rf #{release_path}/config/initializers/secret_token.rb"
     run "ln -nfs #{deploy_to}/shared/config/secret_token.rb #{release_path}/config/initializers/secret_token.rb"
   end
 end

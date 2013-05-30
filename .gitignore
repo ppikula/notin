@@ -21,4 +21,3 @@
 /config/database.yml
 /config/facebook.yml
 /config/deploy.rb
-/config/initializers/secret_token.rb
